@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+input {
+  min-height: 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255,.6);
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+button {
+  width: 120px;
+  margin: 10px 0 10px;
+  min-height: 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+  box-shadow: 0px 0px 5px 0px black;
+  background-color: rgb(156, 202, 156);
+  color: white;
+}
+button:hover {
+  background-color: rgb(101, 201, 101);
+}
+.delete {
+  background-color: rgb(243, 131, 131);
+}
+.delete:hover {
+  background-color: rgb(243, 30, 30)
+}
+i {
+  font-size: 35px;
+  transition: .3s;
+  cursor: pointer;
+  z-index: 1000;
+  color:black;
+}
+i:hover {
+  transform: scale(1.1);
+}
+i:active {
+  color: rgb(248, 247, 247);
+}
+.error {
+  box-shadow: 0px 0px 10px 0 red inset;
+}
+.errorText {
+  color: red;
+  white-space: nowrap;
+}

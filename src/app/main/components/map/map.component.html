@@ -1,0 +1,12 @@
+<app-popup [selectedMarker]="clickedMarker"></app-popup>
+<div class="map">
+  <i [@menuBtn] *ngIf="!menuIsActive" (click)="openMenu()" class="fas fa-bars"></i>
+  <google-map  height="100vh" width="100%">
+    <map-marker
+    #markerInfo
+    *ngFor="let p of properties"
+    [position]="p.pisition"
+    (mapClick)="markerIsClicked(p)"
+    ></map-marker>
+  </google-map>
+</div>

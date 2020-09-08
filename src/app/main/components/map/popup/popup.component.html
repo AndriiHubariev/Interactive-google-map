@@ -1,0 +1,18 @@
+<div *ngIf="popupIsOpen" class="popup" [@showPopup]>
+  <div class="closeBtn">
+    <i (click)="closePopup()" class="fas fa-times"></i>
+  </div>
+  <h2>Marker Info</h2>
+  <p>Address: {{selectedMarker.address}}</p>
+  <div class="imgs">
+    <div class="inner_imgs">
+      <img *ngFor="let img of selectedMarker.imgs" src="{{img}}" alt="">
+    </div>
+  </div>
+  <div class="info">
+    <p>Rooms quantity: {{selectedMarker.roomsNumber}}</p>
+    <p>Apartment area: {{selectedMarker.area}} square meters</p>
+    <p>Details/Features:</p>
+    <ul><li *ngFor="let item of selectedMarker.details">{{item}}</li></ul>
+  </div>
+</div>

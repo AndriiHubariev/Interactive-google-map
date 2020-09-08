@@ -1,0 +1,91 @@
+<i [@menuBtn] *ngIf="menuIsActive" (click)="closeMenu()" class="fas fa-times"></i>
+<div
+*ngIf="menuIsActive"
+[class.active]="menuIsActive"
+[@appearance]
+class="form"
+[formGroup]="form"
+(ngSubmit)="submit()"
+>
+  <p>New Property</p>
+  <small class="invalidForm" *ngIf="!formIsValid">{{errFormMessage}}</small>
+  <!-- form fields -->
+  <!-- ROOMS QUANTITY -->
+  <label for="rooms">Rooms quantity
+    <span *ngIf="form.controls.rooms.invalid && form.controls.rooms.touched">
+      <small *ngIf="form.controls.rooms.errors.required" class="errorText">required</small>
+      <small *ngIf="form.controls.rooms.errors.pattern" class="errorText">should be a number</small>
+    </span>
+  </label>
+  <input
+  [class.error]="form.controls.rooms.invalid && form.controls.rooms.touched"
+   formControlName="rooms"
+   type="tel"
+   id="rooms"
+   >
+   <!-- END OF THE ROOMS QUANTITY -->
+   <!--APARTMENT AREA -->
+  <label for="area">Apartment area (square meters)
+    <span *ngIf="form.controls.area.invalid && form.controls.area.touched">
+      <small *ngIf="form.controls.area.errors.required" class="errorText">required</small>
+      <small *ngIf="form.controls.area.errors.pattern" class="errorText">should be a number</small>
+    </span>
+  </label>
+  <input
+  [class.error]="form.controls.area.invalid && form.controls.area.touched"
+  formControlName="area"
+  type="tel"
+  id="area">
+  <!-- END OF THE APARTMENT -->
+  <!-- ADDRESS -->
+  <label for="address">Address
+    <span *ngIf="form.controls.address.invalid && form.controls.address.touched">
+      <small *ngIf="form.controls.address.errors.required" class="errorText">required</small>
+    </span>
+  </label>
+  <div class="address">
+    <input
+    [class.error]="form.controls.address.invalid && form.controls.address.touched"
+    formControlName="address"
+    ngx-google-places-autocomplete
+    [options]='options'
+    (onAddressChange)="getSelectedPosition($event)"
+    id="address"
+   />
+  <div>{{ formattedaddress }}</div>
+  </div>
+    <!--END OF THE ADDRESS -->
+    <!-- DETAILS -->
+  <div class="details" formGroupName="details">
+    <label for="details">Details/Features</label>
+    <button (click)="addDetail()">add+</button>
+    <div
+    class="detail"
+    *ngFor="let detail of form.get('details')['controls']; let idx = index"
+    >
+    <label>Detail {{idx + 1}}</label>
+    <input
+    [class.error]="form.controls.details['controls'][idx].invalid && form.controls.details['controls'][idx].touched"
+    type="text"
+    [formControlName]="idx"
+    >
+    <button class="delete" (click)="deleteDetail(idx)">remove</button>
+    </div>
+  </div>
+   <!-- END OF THE DETAILS -->
+   <!-- PICTURES -->
+  <label for="pictures">Pictures</label>
+  <input
+    formControlName="pictures"
+    class="picturesInpt"
+    (change)="saveImages($event)"
+    multiple="multiple" type="file"
+    id="pictures"
+  >
+  <small class="errorText" *ngIf="errImagesMessage">{{errImagesMessage}}</small>
+  <div class="imgsPreview">
+    <img *ngFor="let img of selectedImages" src="{{img}}" alt="">
+  </div>
+  <!-- END OF THE PICTURES -->
+  <button (click)="submit()">Submit</button>
+</div>
